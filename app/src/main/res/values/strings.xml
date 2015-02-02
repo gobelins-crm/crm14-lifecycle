@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">LifeCycle</string>
     <string name="main_activity_label">Activity LifeCycle</string>
+    <string name="launch_activity_btn">Second Activity</string>
 </resources>
