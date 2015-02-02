@@ -16,8 +16,14 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         setContentView(R.layout.main_layout);
 
-        findViewById(R.id.launch_second_activity_button)
+        findViewById(R.id.launch_activity_button)
                 .setOnClickListener(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(TAG, "onStart");
     }
 
     @Override
@@ -36,6 +42,12 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     protected void onStop() {
         super.onStop();
         Log.i(TAG, "onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "onDestroy");
     }
 
     @Override
