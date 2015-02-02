@@ -5,9 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.View;
 
-public class MainActivity extends ActionBarActivity implements View.OnClickListener {
+public class MainActivity extends ActionBarActivity implements MainFragment.OnFragmentInteractionListener {
     private static final String TAG = "MainActivity";
 
     @Override
@@ -17,8 +16,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         setContentView(R.layout.main_layout);
 
-        findViewById(R.id.launch_activity_button)
-                .setOnClickListener(this);
+        if (null == savedInstanceState) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.main_container, MainFragment.newInstance("default"))
+                    .commit();
+        }
     }
 
     @Override
@@ -71,7 +73,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick() {
         startActivity(new Intent(this, SecondActivity.class));
     }
 }
