@@ -1,8 +1,8 @@
 package crm.gobelins.lifecycle;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 
@@ -74,6 +74,11 @@ public class MainActivity extends ActionBarActivity implements MainFragment.OnFr
 
     @Override
     public void onClick() {
-        startActivity(new Intent(this, SecondActivity.class));
+        // startActivity(new Intent(this, SecondActivity.class));
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_container, MainFragment.newInstance("new"))
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(null)
+                .commit();
     }
 }
