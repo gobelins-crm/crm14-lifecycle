@@ -2,6 +2,7 @@ package crm.gobelins.lifecycle;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,12 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         findViewById(R.id.launch_activity_button)
                 .setOnClickListener(this);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.i(TAG, "onRestoreInstanceState");
     }
 
     @Override
@@ -43,6 +50,12 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         super.onPause();
         // Last "safe" method in lifecycle
         Log.i(TAG, "onPause");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.i(TAG, "onSaveInstanceState");
     }
 
     @Override

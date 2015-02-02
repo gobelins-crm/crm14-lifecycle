@@ -2,6 +2,7 @@ package crm.gobelins.lifecycle;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -22,6 +23,12 @@ public class SecondActivity extends ActionBarActivity implements View.OnClickLis
 
         findViewById(R.id.back_to_main_activity_button)
                 .setOnClickListener(this);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.i(TAG, "onRestoreInstanceState");
     }
 
     @Override
@@ -59,6 +66,12 @@ public class SecondActivity extends ActionBarActivity implements View.OnClickLis
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.i(TAG, "onSaveInstanceState");
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
         Log.i(TAG, "onStop");
@@ -73,8 +86,8 @@ public class SecondActivity extends ActionBarActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        // intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        // intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 }
