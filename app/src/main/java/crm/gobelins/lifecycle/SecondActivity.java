@@ -18,9 +18,9 @@ public class SecondActivity extends ActionBarActivity implements View.OnClickLis
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setContentView(R.layout.main_layout);
+        setContentView(R.layout.second_layout);
 
-        findViewById(R.id.launch_activity_button)
+        findViewById(R.id.back_to_main_activity_button)
                 .setOnClickListener(this);
     }
 
@@ -38,6 +38,12 @@ public class SecondActivity extends ActionBarActivity implements View.OnClickLis
     protected void onStart() {
         super.onStart();
         Log.i(TAG, "onStart");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.i(TAG, "onRestart");
     }
 
     @Override
@@ -66,7 +72,9 @@ public class SecondActivity extends ActionBarActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        startActivity(new Intent(this, MainActivity.class));
-        // finish();
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        // intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
     }
 }
